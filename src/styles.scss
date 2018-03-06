@@ -75,12 +75,6 @@ strong {
 	font-weight: normal;
 	font-style: normal;
 	color: $txt-color-lighter;
-	/* Override <a> color when in a <em>/<strong> */
-	/*
-	a {
-		color: inherit;
-	}
-	*/
 }
 
 footer {
@@ -96,25 +90,27 @@ h3 {
 	line-height: $txt-size-small + $txt-height-offset;
 }
 
+// TODO: Find a less dirty solution
 ul {
 	display: inline-block;
 	margin: 0 0 0.5rem;
 	padding: 0;
 	list-style: none;
 
-	:nth-child(1) {
+	// :'(
+	> :nth-child(1) {
 		background-image: url("./svg/linkedin.svg");
 	}
 
-	:nth-child(2) {
+	> :nth-child(2) {
 		background-image: url("./svg/twitter.svg");
 	}
 
-	:nth-child(3) {
+	> :nth-child(3) {
 		background-image: url("./svg/github.svg");
 	}
 
-	:nth-child(4) {
+	> :nth-child(4) {
 		background-image: url("./svg/codepen.svg");
 	}
 }
@@ -124,8 +120,14 @@ li {
 	width: 2rem;
 	height: 2rem;
 	margin-right: 0.5rem;
-	text-indent: -10000rem;
 	cursor: pointer;
+
+	// :'(
+	a {
+		display: block;
+		width: 100%;
+		height: 100%;
+	}
 }
 @media (min-width: 490px) {
 	h1 {
