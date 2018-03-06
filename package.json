@@ -4,8 +4,13 @@
 	"description": "My personal website",
 	"main": "index.html",
 	"scripts": {
-		"css:build": "node-sass src -o src",
-		"css:watch": "node-sass --watch src -o src",
+		"sass": "node-sass src -o src",
+		"postcss": "postcss --use autoprefixer -b 'last 2 versions' < src/styles.css | postcss --use cssnano --no-map > dist/styles.min.css",
+		"build:css": "npm run sass && npm run postcss && cp -R src/svg dist/",
+		"build:html": "html-minifier --input-dir src --output-dir dist --collapse-whitespace --file-ext html && replace 'styles.css' 'styles.min.css' dist/index.html",
+		"clean": "rimraf dist/*",
+		"build": "npm run clean && npm run build:css && npm run build:html",
+		"watch:css": "node-sass --watch src -o src",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"repository": {
@@ -19,6 +24,13 @@
 	},
 	"homepage": "https://github.com/VictorCazanave/portfolio#readme",
 	"devDependencies": {
-		"node-sass": "^4.7.2"
+		"autoprefixer": "^8.1.0",
+		"cssnano": "^3.10.0",
+		"html-minifier": "^3.5.10",
+		"node-sass": "^4.7.2",
+		"postcss": "^6.0.19",
+		"postcss-cli": "^5.0.0",
+		"replace": "^0.3.0",
+		"rimraf": "^2.6.2"
 	}
 }
