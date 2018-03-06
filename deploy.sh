@@ -6,7 +6,7 @@ npm install
 echo Build website...
 npm run build
 echo Copy files to server...
-cp ~/git/portfolio/build/* /var/www/
+cp ~/git/portfolio/dist/* /var/www/
 echo Copy svg folder to server...
-cp -R ~/git/portfolio/build/svg /var/www/
+cp -R ~/git/portfolio/dist/svg /var/www/
 echo portfolio has been deployed!
