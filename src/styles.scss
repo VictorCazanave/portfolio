@@ -1,0 +1,212 @@
+/* Let's try to keep it simple and flat without any CSS class! */
+@import url('https://fonts.googleapis.com/css?family=Mukta+Malar');
+$txt-size-small: 1.5rem;
+$txt-size-medium: 2.5rem;
+$txt-size-large: 3.75rem;
+$txt-size-xlarge: 4.5rem;
+$txt-height-offset: 0.5rem;
+$txt-color: #606060;
+$txt-color-light: #909090;
+$txt-color-lighter: #fff;
+
+*,
+*::after,
+*::before {
+	box-sizing: border-box;
+}
+
+html {
+	width: 100%;
+	height: 100%;
+}
+
+body {
+	width: 100%;
+	min-height: 100%;
+	margin: 0;
+	padding: 0;
+	background-color: #000;
+	font-family: 'Mukta Malar', Arial, sans-serif;
+	color: $txt-color;
+}
+
+main {
+	padding: 2rem 1.5rem;
+}
+
+h1 {
+	margin: 0 0 3rem;
+	font-size: 1rem;
+	font-weight: normal;
+	text-transform: uppercase;
+	line-height: 1rem;
+}
+
+article {
+	margin-bottom: 3rem;
+}
+
+h2 {
+	margin: 0 0 1rem;
+	font-size: 1rem;
+	font-weight: normal;
+	text-transform: uppercase;
+	line-height: 1rem;
+}
+
+p {
+	margin: 0;
+	font-size: $txt-size-small;
+	line-height: $txt-size-small + $txt-height-offset;
+}
+
+a {
+	color: $txt-color-light;
+	text-decoration: none;
+
+	&:focus,
+	&:hover {
+		text-decoration: underline;
+	}
+}
+
+em,
+strong {
+	font-weight: normal;
+	font-style: normal;
+	color: $txt-color-lighter;
+	/* Override <a> color when in a <em>/<strong> */
+	/*
+	a {
+		color: inherit;
+	}
+	*/
+}
+
+footer {
+	margin: 0;
+}
+
+h3 {
+	display: inline-block;
+	vertical-align: bottom;
+	margin: 0 0.5rem 0 0;
+	font-size: $txt-size-small;
+	font-weight: normal;
+	line-height: $txt-size-small + $txt-height-offset;
+}
+
+ul {
+	display: inline-block;
+	margin: 0 0 0.5rem;
+	padding: 0;
+	list-style: none;
+
+	:nth-child(1) {
+		background-image: url("./svg/linkedin.svg");
+	}
+
+	:nth-child(2) {
+		background-image: url("./svg/twitter.svg");
+	}
+
+	:nth-child(3) {
+		background-image: url("./svg/github.svg");
+	}
+
+	:nth-child(4) {
+		background-image: url("./svg/codepen.svg");
+	}
+}
+
+li {
+	display: inline-block;
+	width: 2rem;
+	height: 2rem;
+	margin-right: 0.5rem;
+	text-indent: -10000rem;
+	cursor: pointer;
+}
+@media (min-width: 490px) {
+	h1 {
+		margin-bottom: 5rem;
+	}
+
+	article {
+		margin-bottom: 5rem;
+	}
+
+	h3,
+	p {
+		font-size: $txt-size-medium;
+		line-height: $txt-size-medium + $txt-height-offset;
+	}
+
+	ul {
+		margin-bottom: 0.65rem;
+	}
+
+	li {
+		width: 2.5rem;
+		height: 2.5rem;
+	}
+}
+@media (min-width: 770px) {
+	main {
+		padding-right: 10%;
+	}
+
+	h1 {
+		font-size: 1.5rem;
+	}
+
+	article {
+		display: flex;
+	}
+
+	h2 {
+		width: 15%;
+		margin-top: 2rem;
+		text-align: center;
+		margin-left: -2rem;
+		font-size: 1.2rem;
+	}
+
+	p {
+		flex: 1;
+		font-size: $txt-size-large;
+		line-height: $txt-size-large + $txt-height-offset;
+	}
+
+	footer {
+		display: flex;
+	}
+
+	h3 {
+		margin-right: 1.5rem;
+		font-size: $txt-size-large;
+		line-height: $txt-size-large + $txt-height-offset;
+	}
+
+	li {
+		width: 3.2rem;
+		height: 3.2rem;
+		margin-right: 1.2rem;
+	}
+}
+@media (min-width: 1000px) {
+	h2 {
+		margin-top: 2.5rem;
+	}
+
+	h3,
+	p {
+		font-size: $txt-size-xlarge;
+		line-height: $txt-size-xlarge + $txt-height-offset;
+	}
+
+	li {
+		width: 4rem;
+		height: 4rem;
+	}
+}
