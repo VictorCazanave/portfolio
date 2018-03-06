@@ -1,5 +1,5 @@
 # Portfolio
-My personal website: (http://victorcazanave.com)
+It should be online there: http://victorcazanave.com
 
 This is a temporary version until I find time to make a better one. So I guess it's the final version.
 
