@@ -90,13 +90,12 @@ h3 {
 	line-height: $txt-size-small + $txt-height-offset;
 }
 
-// TODO: Find a less dirty solution
 ul {
 	display: inline-block;
-	margin: 0 0 0.5rem;
+	margin: 0 0 0.05rem;
 	padding: 0;
 	list-style: none;
-
+	// TODO: Find a less dirty solution
 	// :'(
 	> :nth-child(1) {
 		background-image: url("./svg/linkedin.svg");
@@ -121,7 +120,6 @@ li {
 	height: 2rem;
 	margin-right: 0.5rem;
 	cursor: pointer;
-
 	// :'(
 	a {
 		display: block;
@@ -145,7 +143,7 @@ li {
 	}
 
 	ul {
-		margin-bottom: 0.65rem;
+		margin-bottom: 0.15rem;
 	}
 
 	li {
