@@ -8,8 +8,9 @@
 		"postcss": "postcss --use autoprefixer -b 'last 2 versions' < src/styles.css | postcss --use cssnano --no-map > dist/styles.min.css",
 		"build:css": "npm run sass && npm run postcss && cp -R src/svg dist/",
 		"build:html": "html-minifier --input-dir src --output-dir dist --collapse-whitespace --file-ext html && replace 'styles.css' 'styles.min.css' dist/index.html",
+		"build:config": "cp src/{robot.txt,manifest.json} dist/",
 		"clean": "rimraf dist/*",
-		"build": "npm run clean && npm run build:css && npm run build:html",
+		"build": "npm run clean && npm run build:css && npm run build:html && npm run build:config",
 		"watch:css": "node-sass --watch src -o src",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
