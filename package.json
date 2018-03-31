@@ -6,15 +6,15 @@
 	"scripts": {
 		"prestart": "npm run css:compile",
 		"start": "node-sass src/css/ -o src/css/ --watch",
-		"prebuild": "rimraf dist/*.* dist/svg dist/**/*.*",
-		"build": "npm run build:css && npm run build:js && npm run build:html && npm run build:config",
+		"prebuild": "rimraf dist/*.* dist/css/svg dist/**/*.*",
+		"build": "npm run build:css && npm run build:html && npm run build:config",
 		"build:css": "npm run css:compile && npm run css:minify && npm run css:svg",
 		"build:js": "npm run js:minify",
 		"build:html": "npm run html:minify && npm run html:mark",
 		"build:config": "cp src/robot.txt src/manifest.json src/favicon.ico dist/",
 		"css:compile": "node-sass src/css/main.scss -o src/css/",
 		"css:minify": "postcss src/css/main.css --use autoprefixer --browsers 'last 4 versions' --no-map | csso --output dist/css/main.css",
-		"css:svg": "cp -R src/svg dist/",
+		"css:svg": "cp -R src/css/svg dist/css/",
 		"js:minify": "uglifyjs --compress --output dist/js/main.js -- src/js/main.js",
 		"html:minify": "html-minifier --input-dir src --output-dir dist --collapse-whitespace --file-ext html",
 		"html:mark":
