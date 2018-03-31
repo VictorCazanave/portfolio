@@ -4,15 +4,21 @@
 	"description": "My personal website",
 	"main": "index.html",
 	"scripts": {
-		"sass": "node-sass src -o src",
-		"postcss": "postcss --use autoprefixer -b 'last 2 versions' < src/styles.css | postcss --use cssnano --no-map > dist/styles.min.css",
-		"build:css": "npm run sass && npm run postcss && cp -R src/svg dist/",
-		"build:html": "html-minifier --input-dir src --output-dir dist --collapse-whitespace --file-ext html && replace 'styles.css' 'styles.min.css' dist/index.html",
+		"prestart": "npm run css:compile",
+		"start": "node-sass src/css/ -o src/css/ --watch",
+		"prebuild": "rimraf dist/*.* dist/svg dist/**/*.*",
+		"build": "npm run build:css && npm run build:js && npm run build:html && npm run build:config",
+		"build:css": "npm run css:compile && npm run css:minify && npm run css:svg",
+		"build:js": "npm run js:minify",
+		"build:html": "npm run html:minify && npm run html:mark",
 		"build:config": "cp src/robot.txt src/manifest.json src/favicon.ico dist/",
-		"clean": "rimraf dist/*",
-		"build": "npm run clean && npm run build:css && npm run build:html && npm run build:config",
-		"watch:css": "node-sass --watch src -o src",
-		"test": "echo \"Error: no test specified\" && exit 1"
+		"css:compile": "node-sass src/css/main.scss -o src/css/",
+		"css:minify": "postcss src/css/main.css --use autoprefixer --browsers 'last 4 versions' --no-map | csso --output dist/css/main.css",
+		"css:svg": "cp -R src/svg dist/",
+		"js:minify": "uglifyjs --compress --output dist/js/main.js -- src/js/main.js",
+		"html:minify": "html-minifier --input-dir src --output-dir dist --collapse-whitespace --file-ext html",
+		"html:mark":
+			"hashmark --length 8 --rename --cwd dist/ {css,js}/main.{css,js} {dir}/main.{hash}{ext} | replaceinfiles --source dist/index.html --dest-pattern dist/index.html"
 	},
 	"repository": {
 		"type": "git",
@@ -25,13 +31,16 @@
 	},
 	"homepage": "https://github.com/VictorCazanave/portfolio#readme",
 	"devDependencies": {
+		"@songkick/replaceinfiles": "^1.1.6",
 		"autoprefixer": "^8.1.0",
-		"cssnano": "^3.10.0",
+		"csso-cli": "^1.1.0",
+		"hashmark": "^5.0.0",
 		"html-minifier": "^3.5.10",
 		"node-sass": "^4.7.2",
 		"postcss": "^6.0.19",
 		"postcss-cli": "^5.0.0",
 		"replace": "^0.3.0",
-		"rimraf": "^2.6.2"
+		"rimraf": "^2.6.2",
+		"uglify-js": "^3.3.17"
 	}
 }
