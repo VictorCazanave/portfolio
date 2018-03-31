@@ -1,9 +1,11 @@
 # Portfolio
-It should be online there: http://victorcazanave.com
+
+It should be online there: https://victorcazanave.com
 
 This is a temporary version until I have time to make a better one. So I guess it's the final version.
 
 ## Styles
+
 The design is fully ~~a copy of~~ inspired by [Mister](http://mister.studio/).
 
 I intentionally didn't use any CSS classes for... fun :)
@@ -11,5 +13,6 @@ I intentionally didn't use any CSS classes for... fun :)
 Then it forced me to to keep it as simple as possible and consistent.
 
 ## TODO
+
 * Real portfolio
 * i18n
