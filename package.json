@@ -17,8 +17,7 @@
 		"css:svg": "cp -R src/css/svg dist/css/",
 		"js:minify": "uglifyjs --compress --output dist/js/main.js -- src/js/main.js",
 		"html:minify": "html-minifier --input-dir src --output-dir dist --collapse-whitespace --file-ext html",
-		"html:mark":
-			"hashmark --length 8 --rename --cwd dist/ {css,js}/main.{css,js} {dir}/main.{hash}{ext} | replaceinfiles --source dist/index.html --dest-pattern dist/index.html"
+		"html:mark": "hashmark --length 8 --rename --cwd dist/ {css,js}/main.{css,js} {dir}/main.{hash}{ext} | replaceinfiles --source dist/index.html --dest-pattern dist/index.html"
 	},
 	"repository": {
 		"type": "git",
@@ -32,15 +31,15 @@
 	"homepage": "https://github.com/VictorCazanave/portfolio#readme",
 	"devDependencies": {
 		"@songkick/replaceinfiles": "^1.1.6",
-		"autoprefixer": "^8.1.0",
+		"autoprefixer": "^8.6.5",
 		"csso-cli": "^1.1.0",
 		"hashmark": "^5.0.0",
-		"html-minifier": "^3.5.10",
-		"node-sass": "^4.7.2",
-		"postcss": "^6.0.19",
-		"postcss-cli": "^5.0.0",
+		"html-minifier": "^3.5.21",
+		"node-sass": "^4.13.1",
+		"postcss": "^6.0.23",
+		"postcss-cli": "^5.0.1",
 		"replace": "^0.3.0",
-		"rimraf": "^2.6.2",
-		"uglify-js": "^3.3.17"
+		"rimraf": "^2.7.1",
+		"uglify-js": "^3.8.0"
 	}
 }
