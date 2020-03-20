@@ -1,45 +1,42 @@
 {
-	"name": "portfolio",
-	"version": "1.0.0",
-	"description": "My personal website",
-	"main": "index.html",
-	"scripts": {
-		"prestart": "npm run css:compile",
-		"start": "node-sass src/css/ -o src/css/ --watch",
-		"prebuild": "rimraf dist/*.* dist/css/svg dist/**/*.*",
-		"build": "npm run build:css && npm run build:html && npm run build:config",
-		"build:css": "npm run css:compile && npm run css:minify && npm run css:svg",
-		"build:js": "npm run js:minify",
-		"build:html": "npm run html:minify && npm run html:mark",
-		"build:config": "cp src/robot.txt src/manifest.json src/favicon.ico dist/",
-		"css:compile": "node-sass src/css/main.scss -o src/css/",
-		"css:minify": "postcss src/css/main.css --use autoprefixer --browsers 'last 4 versions' --no-map | csso --output dist/css/main.css",
-		"css:svg": "cp -R src/css/svg dist/css/",
-		"js:minify": "uglifyjs --compress --output dist/js/main.js -- src/js/main.js",
-		"html:minify": "html-minifier --input-dir src --output-dir dist --collapse-whitespace --file-ext html",
-		"html:mark": "hashmark --length 8 --rename --cwd dist/ {css,js}/main.{css,js} {dir}/main.{hash}{ext} | replaceinfiles --source dist/index.html --dest-pattern dist/index.html"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/VictorCazanave/portfolio.git"
-	},
-	"author": "Victor Cazanave <victor.cazanave@gmail.com>",
-	"license": "MIT",
-	"bugs": {
-		"url": "https://github.com/VictorCazanave/portfolio/issues"
-	},
-	"homepage": "https://github.com/VictorCazanave/portfolio#readme",
-	"devDependencies": {
-		"@songkick/replaceinfiles": "^1.1.6",
-		"autoprefixer": "^8.6.5",
-		"csso-cli": "^1.1.0",
-		"hashmark": "^5.0.0",
-		"html-minifier": "^3.5.21",
-		"node-sass": "^4.13.1",
-		"postcss": "^6.0.23",
-		"postcss-cli": "^5.0.1",
-		"replace": "^0.3.0",
-		"rimraf": "^2.7.1",
-		"uglify-js": "^3.8.0"
-	}
+  "name": "portfolio",
+  "version": "1.0.0",
+  "description": "My personal website",
+  "main": "index.html",
+  "scripts": {
+    "prebuild": "rimraf dist/*",
+    "build": "npm run build:css && npm run build:html && npm run build:config",
+    "build:css": "npm run build:css:prefix && npm run build:css:minify && npm run build:css:svg",
+    "build:css:prefix": "postcss src/css/main.css --dir dist/css/ --use autoprefixer --no-map",
+    "build:css:minify": "csso dist/css/main.css --output dist/css/main.css",
+    "build:css:svg": "cp -R src/css/svg dist/css/",
+    "build:html": "npm run build:html:minify && npm run build:html:mark",
+    "build:html:minify": "html-minifier --input-dir src --output-dir dist --collapse-whitespace --file-ext html",
+    "build:html:mark": "hashmark --length 8 --rename --cwd dist/ {css,js}/main.{css,js} {dir}/main.{hash}{ext} | replaceinfiles --source dist/index.html --dest-pattern dist/index.html",
+    "build:config": "cp src/robot.txt src/manifest.json src/favicon.ico dist/",
+    "build:js": "npm run build:js:minify",
+    "build:js:minify": "uglifyjs --compress --output dist/js/main.js -- src/js/main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VictorCazanave/portfolio.git"
+  },
+  "author": "Victor Cazanave <victor.cazanave@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/VictorCazanave/portfolio/issues"
+  },
+  "homepage": "https://github.com/VictorCazanave/portfolio#readme",
+  "devDependencies": {
+    "@songkick/replaceinfiles": "^1.1.6",
+    "autoprefixer": "^8.6.5",
+    "csso-cli": "^1.1.0",
+    "hashmark": "^5.0.0",
+    "html-minifier": "^3.5.21",
+    "postcss": "^6.0.23",
+    "postcss-cli": "^5.0.1",
+    "replace": "^0.3.0",
+    "rimraf": "^2.7.1",
+    "uglify-js": "^3.8.0"
+  }
 }
