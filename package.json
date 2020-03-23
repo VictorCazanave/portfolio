@@ -6,10 +6,10 @@
   "scripts": {
     "prebuild": "rimraf dist/*",
     "build": "npm run build:css && npm run build:html && npm run build:config",
-    "build:css": "npm run build:css:prefix && npm run build:css:minify && npm run build:css:svg",
+    "build:css": "npm run build:css:prefix && npm run build:css:minify && npm run build:css:fonts",
     "build:css:prefix": "postcss src/css/main.css --dir dist/css/ --use autoprefixer --no-map",
     "build:css:minify": "csso dist/css/main.css --output dist/css/main.css",
-    "build:css:svg": "cp -R src/css/svg dist/css/",
+    "build:css:fonts": "cp -R src/css/fonts dist/css/",
     "build:html": "npm run build:html:minify && npm run build:html:mark",
     "build:html:minify": "html-minifier --input-dir src --output-dir dist --collapse-whitespace --file-ext html",
     "build:html:mark": "hashmark --length 8 --rename --cwd dist/ {css,js}/main.{css,js} {dir}/main.{hash}{ext} | replaceinfiles --source dist/index.html --dest-pattern dist/index.html",
