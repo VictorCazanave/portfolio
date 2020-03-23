@@ -1,0 +1,195 @@
+/* 
+Let's try to:
+- keep CSS simple and flat without using any CSS class 
+- practice CSS variables
+- write light HTML with the power of CSS grid
+*/
+
+:root {
+  /* WCAG AAA compliant colors  */
+  --color-background: #000;
+  --color-base: #959595;
+  --color-link: #d5d5d5;
+  --color-strong: #fff;
+
+  /* Gaps between sections and titles */
+  --gap-y-primary: 3rem;
+  --gap-y-secondary: 1rem;
+
+  /* Main layout */
+  --main-template: auto / auto;
+
+  /* Title (h1) */
+  --title-size: 1rem;
+
+  /* Subtitles (h2) */
+  --subtitle-margin: 0;
+  --subtitle-size: 0.9rem;
+
+  /* Texts (p) */
+  --text-size: 1.8rem;
+  --text-margin: 0 0 var(--gap-y-primary);
+
+  /* Icons */
+  --icon-size: 2rem;
+  --icon-gap: 1rem;
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+body {
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+  padding: 2rem 1.5rem;
+  background-color: var(--color-background);
+  font-family: "Oxygen", Arial, sans-serif;
+  color: var(--color-base);
+  line-height: 1;
+}
+
+main {
+  display: grid;
+  grid-template: var(--main-template);
+  grid-row-gap: var(--gap-y-secondary);
+}
+
+h1 {
+  margin: 0 0 var(--gap-y-primary);
+  font-size: var(--title-size);
+  font-weight: normal;
+  text-transform: uppercase;
+}
+
+h2 {
+  margin: var(--subtitle-margin);
+  font-size: var(--subtitle-size);
+  font-weight: normal;
+  text-transform: uppercase;
+}
+
+p {
+  margin: var(--text-margin);
+  font-size: var(--text-size);
+  line-height: 1.4;
+  /*text-align: justify;*/
+}
+
+a {
+  color: var(--color-link);
+  text-decoration: none;
+}
+
+a:focus,
+a:hover {
+  text-decoration: underline;
+}
+
+em,
+strong {
+  font-weight: normal;
+  font-style: normal;
+  color: var(--color-strong);
+}
+
+footer {
+  --subtitle-margin: 0 0 var(--gap-y-secondary);
+  --text-margin: 0;
+}
+
+ul {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+li {
+  width: var(--icon-size);
+  height: var(--icon-size);
+  cursor: pointer;
+}
+
+li + li {
+  margin-left: var(--icon-gap);
+}
+
+li:nth-child(1) {
+  background-image: url("./svg/linkedin.svg");
+}
+
+li:nth-child(2) {
+  background-image: url("./svg/twitter.svg");
+}
+
+li:nth-child(3) {
+  background-image: url("./svg/github.svg");
+}
+
+li:nth-child(4) {
+  background-image: url("./svg/codepen.svg");
+}
+
+li a {
+  display: block;
+  height: 100%;
+}
+
+/* iPhone 6/7/8 Plus */
+@media (min-width: 414px) {
+  :root {
+    --gap-y-primary: 5rem;
+    --text-size: 2.2rem;
+    --icon-size: 2.5rem;
+  }
+}
+
+/* iPad portrait  */
+@media (min-width: 768px) {
+  :root {
+    --main-side-width: 15%;
+    --main-template: auto / var(--main-side-width) auto;
+    --title-size: 1.5rem;
+    --subtitle-margin: 2.5rem 0 0;
+    --subtitle-size: 1.1rem;
+    --text-margin: 0 0 calc(var(--gap-y-primary) - var(--gap-y-secondary)); /* text bottom margin + grid grap = primary gap Y */
+    --text-size: 3.2rem;
+    --icon-size: 3.2rem;
+    --icon-gap: 1.2rem;
+  }
+
+  h2 {
+    text-align: center;
+  }
+
+  p {
+    padding-right: var(--main-side-width);
+  }
+
+  footer {
+    display: flex;
+    align-items: baseline;
+  }
+
+  footer h2 {
+    flex: 0 0 var(--main-side-width);
+  }
+
+  footer p {
+    flex: none;
+    padding-right: 2rem;
+  }
+}
+
+/* iPad landscape */
+@media (min-width: 1024px) {
+  :root {
+    --subtitle-margin: 3.4rem 0 0;
+    --text-size: 4rem;
+    --icon-size: 4rem;
+  }
+}
