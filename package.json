@@ -5,7 +5,7 @@
   "main": "index.html",
   "scripts": {
     "prebuild": "rimraf dist/*",
-    "build": "npm run build:css && npm run build:html && npm run build:config",
+    "build": "npm run build:css && npm run build:html && npm run build:js && npm run build:config",
     "build:css": "npm run build:css:prefix && npm run build:css:minify && npm run build:css:fonts",
     "build:css:prefix": "postcss src/css/main.css --dir dist/css/ --use autoprefixer --no-map",
     "build:css:minify": "csso dist/css/main.css --output dist/css/main.css",
@@ -14,8 +14,9 @@
     "build:html:minify": "html-minifier --input-dir src --output-dir dist --collapse-whitespace --file-ext html",
     "build:html:mark": "hashmark --length 8 --rename --cwd dist/ {css,js}/main.{css,js} {dir}/main.{hash}{ext} | replaceinfiles --source dist/index.html --dest-pattern dist/index.html",
     "build:config": "cp src/robot.txt src/manifest.json src/favicon.ico dist/",
-    "build:js": "npm run build:js:minify",
-    "build:js:minify": "uglifyjs --compress --output dist/js/main.js -- src/js/main.js"
+    "build:js": "npm run build:js:dir && npm run build:js:minify",
+    "build:js:dir": "mkdir dist/js",
+    "build:js:minify": "uglifyjs src/js/main.js --compress --output dist/js/main.js"
   },
   "repository": {
     "type": "git",
@@ -37,6 +38,6 @@
     "postcss-cli": "^5.0.1",
     "replace": "^0.3.0",
     "rimraf": "^2.7.1",
-    "uglify-js": "^3.8.0"
+    "uglify-es": "^3.3.9"
   }
 }
