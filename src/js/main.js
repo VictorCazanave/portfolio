@@ -1,5 +1,5 @@
-window.addEventListener("DOMContentLoaded", () => {
-	const switchElt = document.getElementById("switch");
+window.addEventListener('DOMContentLoaded', () => {
+	const switchElt = document.getElementById('switch');
 
 	/**
 	 * Get user preference:
