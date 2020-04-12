@@ -1,22 +1,22 @@
 {
 	"name": "portfolio",
-	"version": "1.1.0",
+	"version": "1.2.0",
 	"description": "My personal website",
 	"main": "index.html",
 	"scripts": {
 		"prebuild": "rimraf dist/*",
-		"build": "npm run build:css && npm run build:html && npm run build:js && npm run build:config",
+		"build": "npm run build:css && npm run build:js && npm run build:html && npm run build:config",
 		"build:css": "npm run build:css:prefix && npm run build:css:minify && npm run build:css:fonts",
 		"build:css:prefix": "postcss src/css/main.css --dir dist/css/ --use autoprefixer --no-map",
 		"build:css:minify": "csso dist/css/main.css --output dist/css/main.css",
 		"build:css:fonts": "cp -R src/css/fonts dist/css/",
-		"build:html": "npm run build:html:minify && npm run build:html:mark",
-		"build:html:minify": "html-minifier --input-dir src --output-dir dist --collapse-whitespace --file-ext html",
-		"build:html:mark": "hashmark --length 8 --rename --cwd dist/ {css,js}/main.{css,js} {dir}/main.{hash}{ext} | replaceinfiles --source dist/index.html --dest-pattern dist/index.html",
-		"build:config": "cp src/robot.txt src/manifest.json src/favicon.ico dist/",
 		"build:js": "npm run build:js:dir && npm run build:js:minify",
 		"build:js:dir": "mkdir dist/js",
-		"build:js:minify": "uglifyjs src/js/main.js --compress --output dist/js/main.js"
+		"build:js:minify": "uglifyjs src/js/main.js --compress --output dist/js/main.js",
+		"build:html": "npm run build:html:minify && npm run build:html:mark",
+		"build:html:minify": "html-minifier --input-dir src --output-dir dist --collapse-whitespace --file-ext html",
+		"build:html:mark": "hashmark --length 8 --rename --cwd dist/ '@(css|js)/main.@(css|js)' {dir}/main.{hash}{ext} | replaceinfiles --source 'dist/@(en|fr|zh)/index.html' --dest-pattern {dir}/index.html",
+		"build:config": "cp src/robot.txt src/manifest.json src/favicon.ico dist/"
 	},
 	"repository": {
 		"type": "git",
