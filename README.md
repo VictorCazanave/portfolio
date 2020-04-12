@@ -16,5 +16,5 @@ I also played with "new" CSS features like grid and custom properties.
 
 ## 🗒 TODO
 
-* i18n
+* ~~i18n~~
 * Real portfolio
