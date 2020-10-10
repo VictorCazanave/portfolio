@@ -4,19 +4,17 @@
 	"description": "My personal website",
 	"main": "index.html",
 	"scripts": {
-		"prebuild": "rimraf dist/*",
-		"build": "npm run build:css && npm run build:js && npm run build:html && npm run build:config",
-		"build:css": "npm run build:css:prefix && npm run build:css:minify && npm run build:css:fonts",
+		"prebuild": "rimraf dist/* && mkdir dist/css dist/js",
+		"build": "run-s build:*",
+		"build:css": "run-s build:css:*",
 		"build:css:prefix": "postcss src/css/main.css --dir dist/css/ --use autoprefixer --no-map",
 		"build:css:minify": "csso dist/css/main.css --output dist/css/main.css",
 		"build:css:fonts": "cp -R src/css/fonts dist/css/",
-		"build:js": "npm run build:js:dir && npm run build:js:minify",
-		"build:js:dir": "mkdir dist/js",
-		"build:js:minify": "uglifyjs src/js/main.js --compress --output dist/js/main.js",
-		"build:html": "npm run build:html:minify && npm run build:html:mark",
+		"build:js": "terser src/js/main.js --compress  --mangle --output dist/js/main.js",
+		"build:html": "run-s build:html:*",
 		"build:html:minify": "html-minifier --input-dir src --output-dir dist --collapse-whitespace --file-ext html",
-		"build:html:mark": "hashmark --length 8 --rename --cwd dist/ '@(css|js)/main.@(css|js)' {dir}/main.{hash}{ext} | replaceinfiles --source 'dist/@(en|fr|zh)/index.html' --dest-pattern {dir}/index.html",
-		"build:config": "cp src/robot.txt src/manifest.json src/favicon.ico dist/"
+		"build:html:hashmark": "hashmark --length 8 --rename --cwd dist/ '@(css|js)/main.@(css|js)' {dir}/main.{hash}{ext} | replaceinfiles --source 'dist/@(en|fr|zh)/index.html' --dest-pattern {dir}/index.html",
+		"build:assets": "cp src/robot.txt src/manifest.json src/favicon.ico dist/"
 	},
 	"repository": {
 		"type": "git",
@@ -34,10 +32,10 @@
 		"csso-cli": "^1.1.0",
 		"hashmark": "^5.0.0",
 		"html-minifier": "^3.5.21",
+		"npm-run-all": "^4.1.5",
 		"postcss": "^6.0.23",
 		"postcss-cli": "^5.0.1",
-		"replace": "^0.3.0",
 		"rimraf": "^2.7.1",
-		"uglify-es": "^3.3.9"
+		"terser": "^5.3.4"
 	}
 }
