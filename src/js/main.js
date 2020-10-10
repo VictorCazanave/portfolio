@@ -16,5 +16,3 @@ window.addEventListener('DOMContentLoaded', () => {
 		localStorage.setItem('mode', e.target.checked ? 'light' : 'dark');
 	})
 });
-
-
