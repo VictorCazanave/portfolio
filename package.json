@@ -4,7 +4,7 @@
 	"description": "My personal website",
 	"main": "index.html",
 	"scripts": {
-		"prebuild": "rimraf dist/* && mkdir dist/css dist/js",
+		"prebuild": "rimraf dist/* && mkdir -p dist/css dist/js",
 		"build": "run-s build:*",
 		"build:css": "run-s build:css:*",
 		"build:css:prefix": "postcss src/css/main.css --dir dist/css/ --use autoprefixer --no-map",
