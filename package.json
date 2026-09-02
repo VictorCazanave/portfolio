@@ -28,7 +28,7 @@
 	"homepage": "https://github.com/VictorCazanave/portfolio#readme",
 	"devDependencies": {
 		"@songkick/replaceinfiles": "^1.1.6",
-		"autoprefixer": "^8.6.5",
+		"autoprefixer": "^10.5.4",
 		"csso-cli": "^1.1.0",
 		"hashmark": "^5.0.0",
 		"html-minifier": "^3.5.21",
